@@ -31,7 +31,12 @@ export default function Tasks() {
     console.log(taskManager.current.getTasks());
   };
 
-  const handleDelete = (id: number): void => {
+  const handleDelete = (
+    e: React.MouseEvent<HTMLButtonElement>,
+    id: number
+  ): void => {
+    // Optionally prevent the default action if needed
+    e.preventDefault();
     taskManager.current.deleteTask(id);
   };
 
@@ -61,7 +66,7 @@ export default function Tasks() {
 
                 <div className="w-[30%] flex justify-end">
                   {" "}
-                  <button className="mr-4" onClick={handleDelete(task.id)}>
+                  <button onClick={(e) => handleDelete(e, task.id)}>
                     delete
                   </button>
                 </div>
